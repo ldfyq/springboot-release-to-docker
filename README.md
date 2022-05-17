@@ -2,6 +2,7 @@
 springboot deploy to docker
 
 一. 配置pom文件
+```
   <plugin>
       <groupId>com.spotify</groupId>
       <artifactId>docker-maven-plugin</artifactId>
@@ -19,18 +20,20 @@ springboot deploy to docker
           </resources>
       </configuration>
   </plugin>
-  
+  ```
  注意：
  imageName的内容注意一定要小写，docker支持大写
  dockerHost 主要没有地址不支持Https就不要用，否则会报unrecognized SSL message 
  
  二. 配置Dockerfile
  
+ ```
 FROM docker.io/cemmersb/centos-jdk8:latest
 MAINTAINER figo
 VOLUME /tmp
 ADD springdemo-0.0.1-snapshot.jar app.jar
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+```
 
 具体Dockerfile格式说明参考https://www.jianshu.com/p/cbce69c7a52f
 
